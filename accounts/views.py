@@ -9,6 +9,8 @@ def accounts(request):
 	return render(request, 'accounts.html')
 
 def login(request):
+	if request.user.is_authenticated :
+		return redirect('/index')
 	if(request.method=='POST'):
 		username = request.POST['username']
 		password = request.POST['password']
@@ -26,6 +28,8 @@ def login(request):
 		return render(request, 'login.html')
 
 def register(request):
+	if request.user.is_authenticated :
+		return redirect('/index')
 	if(request.method=='POST'):
 		first_name=request.POST['first_name']
 		last_name=request.POST['last_name']
@@ -33,6 +37,9 @@ def register(request):
 		password1=request.POST['password1']
 		password2=request.POST['password2']
 		email=request.POST['email']
+		if(first_name.strip()=="" or last_name.strip()=="" or username.strip()=="" or email.strip()==""):
+			messages.info(request,"Please fill all fields")
+			return redirect('register')
 		if(password1==password2):
 			if(User.objects.filter(username=username).exists()):
 				messages.info(request,"Username already exists")
