@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+*{
+	margin:20;
+}
+body{
+	background-color: #638cb8;
+}
+input{
+	width:50%;
+	padding: 12px;
+	margin: auto;
+	font-family: Trebuchet MS;
+	box-sizing: border-box;
+}
+
+.wrap{
+	width:1200px;  
+	margin:auto;           
+	background:#ddd;
+	color: #fff
+}
+.header{
+	color: #906abd;
+	text-align: center;
+	padding: 20;
+	font-size: 40;
+	font-family: Trebuchet MS;
+}
+.btn-danger{
+	background-color: #ffae19;
+	border-color: #e59400;
+}
+.center-column{
+	width: 800px;
+	margin:20px auto;
+	padding: 50;
+	background-color: #fff;
+	border-radius:3px;
+	box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+}
+</style>
+
+<div class="center-column">
+	<div class="header">
+	Hey there, Log in to see your tasks
+	</div>
+	<p align="center">
+		{% if not user.is_authenticated %}
+			<a class="btn btn-primary" href="accounts/login">Login</a>
+			<a class="btn btn-primary" href="accounts/register">Register</a>	
+		{% endif %}
+	</p>
+</div>

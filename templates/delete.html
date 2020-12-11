@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+*{
+	margin:20;
+}
+body{
+	background-color: #638cb8;
+	font-family: Trebuchet MS;
+}
+input{
+	width:25%;
+	/*padding: 12px;*/
+	margin: 0 12%;
+	font-family: Trebuchet MS;
+	/*box-sizing: border-box;*/
+}
+.header{
+	width:100%;
+	color: #906abd;
+	margin: 0;
+	text-align: center;
+	font-size: 40;
+	font-family: Trebuchet MS;
+}
+.btn-danger{
+	background-color: #ffae19;
+	border-color: #e59400;
+}
+.center-column{
+	width: 50%;
+	margin:20px auto;
+	padding:20px;
+	background-color: #fff;
+	border-radius:3px;
+	box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+}
+.error{
+	margin: 0 12%;
+	text-align: center;
+	font-family: Trebuchet MS;
+	font-size: 18;
+	/*color: #ff0033;*/
+}
+.item{
+	background-color: #906abd;
+	margin:20px ;
+	padding:15;
+	border-radius: 3px;
+	color: #fff;
+	font-size:16;
+	box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75) ;
+
+}
+</style>
+<div class="center-column">
+	<div class="header">Delete</div>
+	<br>
+	<p class="error">
+	Are you sure you want to delete "{{task.title}}" ?
+	</p>
+	<br>
+	<form method="POST" action="">
+		{% csrf_token %}
+		<input class="btn btn-info" type="submit" name="choice" value="Cancel">
+		<input class="btn btn-danger" type="submit" name="choice" value="Delete">
+	</form>
+</div>
