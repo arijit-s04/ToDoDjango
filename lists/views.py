@@ -15,6 +15,7 @@ def index(request):
 	context={'tasks':tasks}
 	if request.method == 'POST':
 		title = request.POST['title']
+		title = title.strip()
 		task = Tasks(title=title, user = request.user.username)
 		if(len(title)!=0):
 			task.save()
@@ -32,6 +33,9 @@ def update(request, pkey):
 		if request.POST["update"]=="Cancel":
 			return redirect('/index')
 		title = request.POST["title"]
+		title = title.strip()
+		if(title==""):
+			return redirect('/index')
 		completed = request.POST.getlist("completed")
 		task.title = title
 		task.completed = checkBox(completed)
