@@ -50,11 +50,24 @@ input{
 	font-size:16;
 	box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75) ;
 }
+.taskTitleStrike{
+	/*width: 450px;*/
+	margin: 0 10 0 10;
+	padding: 0 10 0 10;
+	text-decoration: line-through;
+	overflow-wrap: break-word;
+}
+.taskTitle{
+	/*width: 450px;*/
+	margin: 0 10 0 10;
+	padding: 0 10 0 10;
+	overflow-wrap: break-word;
+}
 </style>
 
 <div class="center-column">
 	<div class="header">
-		Hello, {{user.first_name}} 
+		Hello, {{user.first_name}}
 	</div>
 	<p align="right" style="font-family:Trebuchet MS;">
 		<a class="logout" href='/accounts/logout'>Logout</a>
@@ -65,16 +78,16 @@ input{
 		<input class="btn btn-primary" type="submit" name="add" value="Add">
 	</form>
 	{% for task in tasks %}
-	<div class="item">	
-		<p>	
-			{# <var id="{{task.title}}"> #}
-			{% if task.completed %}
-			<strike>{{task.title}}</strike>
-			{% else %}
-			<span>{{task.title}} </span>
-			{% endif %}
-			{# </var> #}
-		</p>
+	<div class="item">
+		{% if task.completed %}
+		<div class="taskTitleStrike">
+		{{task.title}}
+		</div>
+		{% else %}
+		<div class="taskTitle">
+		{{task.title}}
+		</div>
+		{% endif %}
 		<a class="btn btn-sm btn-info" onclick="myFunction('{{task.title}}');">Copy</a>
 		<a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
 		<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
